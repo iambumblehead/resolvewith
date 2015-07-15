@@ -1,5 +1,5 @@
 // Filename: resolvewith.spec.js  
-// Timestamp: 2015.07.15-14:15:53 (last modified)
+// Timestamp: 2015.07.15-14:41:31 (last modified)
 // Author(s): bumblehead <chris@bumblehead.com>
 
 var path = require('path');

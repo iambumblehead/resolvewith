@@ -1,5 +1,5 @@
 // Filename: resolvewith.js  
-// Timestamp: 2015.07.15-11:46:15 (last modified)
+// Timestamp: 2015.07.15-14:41:05 (last modified)
 // Author(s): bumblehead <chris@bumblehead.com>  
 
 var fs = require('fs'),
@@ -19,8 +19,7 @@ var resolvewith = module.exports = (function (o) {
   // 4. THROW "not found"
   //
   o = function (requirepath, withpath) {
-    var isRelPathRe = /^.(?=\/)/,
-        fullpath = null;
+    var fullpath = null;
 
     if (typeof withpath === 'string') {
       withpath = o.getasdirname(withpath);
@@ -44,7 +43,7 @@ var resolvewith = module.exports = (function (o) {
   };
 
   o.isrelpath = function (p) {
-    return /^.(?=\/)/.test(p);
+    return /^.\.?(?=\/)/.test(p);
   };
 
   o.iscoremodule = function (p) {
@@ -103,7 +102,7 @@ var resolvewith = module.exports = (function (o) {
   o.getasdirsync = function (d) {
     var filepath = null,
         json = path.join(d, 'package.json');
-    
+
     if (o.isfilesync(json) && (json = require(json)) && json.main) {
       filepath = o.getasfilesync(path.join(d, json.main));
     } else {
