@@ -21,6 +21,18 @@ resolvewith(
   '/test/testfiles/testscript.js'
 );
 // /test/testfiles/path/to/indexfile/index.js
+
+resolvewith(
+  './path/to/indexfile',
+  '/test/testfiles' // a directory can be used as well
+);
+// /test/testfiles/path/to/indexfile/index.js
+
+resolvewith(
+  './path/to/indexfile' // second parameter defaults to `process.cwd`
+);
+// null
+
   
 resolvewith(
   '../parent/file.js',
