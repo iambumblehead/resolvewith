@@ -1,0 +1,25 @@
+{
+  "name": "resolvewith",
+  "version": "0.0.1",
+  "license" : "MIT",
+  "readmeFilename": "README.md",
+  "description": "resolve one filepath (or id) relative to another via the rules of CommonJS/node's module.require",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/iambumblehead/resolvewith.git"
+  },
+  "keywords": [
+    "dependency",
+    "commonjs",    
+    "resolve",
+    "file"
+  ],
+  "dependencies" : {
+  },
+  "devDependencies" : {
+    "jasmine-node" : "~1.14.x"
+  },
+  "scripts" : {
+    "test" : "node node_modules/jasmine-node/bin/jasmine-node --verbose test/"
+  }
+}
