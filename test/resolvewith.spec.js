@@ -1,5 +1,5 @@
 // Filename: resolvewith.spec.js  
-// Timestamp: 2015.07.15-14:41:31 (last modified)
+// Timestamp: 2015.07.16-12:32:43 (last modified)
 // Author(s): bumblehead <chris@bumblehead.com>
 
 var path = require('path');
@@ -90,7 +90,27 @@ describe("resolvewith", function () {
     ).toBe(
       null
     );        
-  });  
+  });
+
+  it("should follow the behaviour of require.resolve", function () {
+    expect(
+      require.resolve('../src/resolvewith')
+    ).toBe(
+      resolvewith('../src/resolvewith', path.resolve('../resolvewith/test/'))
+    );
+
+    expect(
+      require.resolve('./testfiles/testscript.js')
+    ).toBe(
+      resolvewith('./testfiles/testscript.js', path.resolve('../resolvewith/test/'))
+    );
+
+    expect(
+      require.resolve('path')
+    ).toBe(
+      resolvewith('path', path.resolve('../resolvewith/test/'))    
+    );    
+  });
 });
 
 describe("resolvewith.getasdirname", function () {
@@ -98,5 +118,4 @@ describe("resolvewith.getasdirname", function () {
     expect( /^\/.*relpath$/.test(resolvewith.getasdirname('./relpath')) ).toBe(true);
   });
 });
-
 

@@ -1,5 +1,5 @@
 // Filename: resolvewith.js  
-// Timestamp: 2015.07.15-14:41:05 (last modified)
+// Timestamp: 2015.07.16-12:33:24 (last modified)
 // Author(s): bumblehead <chris@bumblehead.com>  
 
 var fs = require('fs'),

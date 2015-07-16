@@ -2,66 +2,31 @@ resolvewith
 ===========
 **(c)[Bumblehead][0], 2015** [MIT-license](#license)
 
-Resolve one filepath (or id) relative to another via the rules of CommonJS/node's [module.require][1].
-
-For example, assume this files exists. Use `resolvewith` to know the full path to the file referenced in each require call.
+Resolve one filepath (or id) relative to another via the rules of CommonJS/node's [module.require][1]. Use `resolvewith` as an alternative to node's native [require.resolve][2].
 
 _/test/testfiles/testscript.js_
 ```javascript
 var modulea = require('./path/to/indexfile'),
     modulea = require('../parent/file.js'),
     moduleb = require('testmodule');
-```
-    
-Find the referenced file.
 
-```javascript
-resolvewith(
-  './path/to/indexfile',
-  '/test/testfiles/testscript.js'
-);
-// /test/testfiles/path/to/indexfile/index.js
+console.log(require.resolve('../src/resolvewith'));
+// /Users/bumble/resolvewith/src/resolvewith.js
+console.log(require.resolve('./testfiles/testscript.js'));
+// /Users/bumble/resolvewith/test/testfiles/testscript.js
+console.log(require.resolve('path'));
+// path
 
-resolvewith(
-  './path/to/indexfile',
-  '/test/testfiles' // a directory can be used as well
-);
-// /test/testfiles/path/to/indexfile/index.js
-
-resolvewith(
-  './path/to/indexfile' // second parameter defaults to `process.cwd`
-);
-// null
-
-  
-resolvewith(
-  '../parent/file.js',
-  '/test/testfiles/testscript.js'
-);
-// /test/parent/file.js
-
-resolvewith(
-  'testmodule',
-  '/test/testfiles/testscript.js'
-);
-// /test/testfiles/node_modules/testmodule/index.js
-
-resolvewith(
-  'doesnotexist',
-  '/test/testfiles/testscript.js'
-);
-// null
-```
-
-`resolvewith` follows the behaviour of [require.resolve][2] if the given path references a 'core' module such as 'path' or 'fs'. `require.resolve('path')` and `resolvewith('path')` would both return `'path'` .
-
-```javascript
-resolvewith(
-  'path',
-  '/test/testfiles/testscript.js'
-); // 'path'
-
-resolvewith.iscoremodule('path'); // true
+console.log(resolvewith('../src/resolvewith', '/Users/bumble/resolvewith/test/'));
+// /Users/bumble/resolvewith/src/resolvewith.js
+console.log(resolvewith('../src/resolvewith', '/Users/bumble/resolvewith/test/resolvewith.spec.js'));
+// /Users/bumble/resolvewith/src/resolvewith.js
+console.log(resolvewith('./testfiles/testscript.js', '/Users/bumble/resolvewith/test/'));
+// /Users/bumble/resolvewith/test/testfiles/testscript.js
+console.log(resolvewith('path', '/Users/bumble/resolvewith/test/'));
+// path
+console.log(resolvewith.iscoremodule('path'));
+// true
 ```
 
 
