@@ -2,37 +2,21 @@ resolvewith
 ===========
 **(c)[Bumblehead][0], 2015** [MIT-license](#license)
 
-Resolve one filepath (or id) relative to another via the rules of CommonJS/node's [module.require][1]. Use `resolvewith` as an alternative to node's native [require.resolve][2].
+### overview
 
-_/test/testfiles/testscript.js_
+resolvewith resolves a name used in CommonJS's `require(name)` relative to the path of a file, following the [node.js specification][2] exactly.  For example,
+
 ```javascript
-var modulea = require('./path/to/indexfile'),
-    modulea = require('../parent/file.js'),
-    moduleb = require('testmodule');
-
-console.log(require.resolve('../src/resolvewith'));
-// /Users/bumble/resolvewith/src/resolvewith.js
-console.log(require.resolve('./testfiles/testscript.js'));
-// /Users/bumble/resolvewith/test/testfiles/testscript.js
-console.log(require.resolve('path'));
-// path
-
-console.log(resolvewith('../src/resolvewith', '/Users/bumble/resolvewith/test/'));
-// /Users/bumble/resolvewith/src/resolvewith.js
-console.log(resolvewith('../src/resolvewith', '/Users/bumble/resolvewith/test/resolvewith.spec.js'));
-// /Users/bumble/resolvewith/src/resolvewith.js
-console.log(resolvewith('./testfiles/testscript.js', '/Users/bumble/resolvewith/test/'));
-// /Users/bumble/resolvewith/test/testfiles/testscript.js
-console.log(resolvewith('path', '/Users/bumble/resolvewith/test/'));
-// path
-console.log(resolvewith.iscoremodule('path'));
-// true
+resolvewith('./testfiles/testscript.js', '/Users/bumble/resolvewith/test/')
+// '/Users/bumble/resolvewith/test/testfiles/testscript.js'
+resolvewith('testmodule', '/Users/bumble/resolvewith/test/')
+// '/Users/bumble/resolvewith/node_modules/testmodule/index.js'
 ```
 
-
 [0]: http://www.bumblehead.com                            "bumblehead"
-[1]: https://nodejs.org/api/modules.html#modules_module_require_id
-[2]: https://nodejs.org/api/globals.html#globals_require_resolve
+[1]: https://github.com/iambumblehead/resolvewith/blob/master/src/resolvewith.js
+[2]: https://nodejs.org/api/modules.html#modules_module_require_id
+
 
 ---------------------------------------------------------
 #### <a id="license">license

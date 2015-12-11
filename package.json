@@ -1,7 +1,8 @@
 {
   "name": "resolvewith",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "license" : "MIT",
+  "main": "src/resolvewith.js",
   "readmeFilename": "README.md",
   "description": "resolve one filepath (or id) relative to another via the rules of CommonJS/node's module.require",
   "repository": {
