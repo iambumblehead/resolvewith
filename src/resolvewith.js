@@ -7,6 +7,10 @@ var fs = require('fs'),
 
 var resolvewith = module.exports = (function (o) {
 
+  o = function (requirepath, withpath) {
+    return o.begin(requirepath, withpath);
+  };
+  
   // https://nodejs.org/api/modules.html#modules_module_require_id
   //
   // 1. If X is a core module,
@@ -18,7 +22,7 @@ var resolvewith = module.exports = (function (o) {
   // 3. LOAD_NODE_MODULES(X, dirname(Y))
   // 4. THROW "not found"
   //
-  o = function (requirepath, withpath) {
+  o.begin = function (requirepath, withpath) {
     var fullpath = null;
 
     if (typeof withpath === 'string') {
@@ -36,7 +40,7 @@ var resolvewith = module.exports = (function (o) {
     }
 
     return fullpath;
-  };
+  };  
 
   o.isdirpath = function (p) {
     return /^\.?\.?\//.test(p);

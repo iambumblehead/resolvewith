@@ -70,15 +70,9 @@ describe("resolvewith", function () {
     var fullpath = path.resolve('./test/testfiles/');
 
     expect(
-      resolvewith('testmodule', fullpath)
+      resolvewith('optfn', fullpath)
     ).toBe(
-      path.resolve('./test/testfiles/node_modules/testmodule/index.js')
-    );
-
-    expect(
-      resolvewith('testmodule', path.join(fullpath + '/path/to/indexfile'))
-    ).toBe(
-      path.resolve('./test/testfiles/node_modules/testmodule/index.js')
+      path.resolve('./node_modules/optfn/optfn.js')
     );
   });
 
